@@ -26,7 +26,7 @@ fun Shop.hasCustomerFrom(city: City): Boolean {
 }
 
 fun Shop.countCustomersFrom(city: City): Int {
-    return this.customers.filter { customer -> customer.isFrom(city) }.count()
+    return this.customers.count { customer -> customer.isFrom(city) }
 }
 
 fun Shop.findFirstCustomerFrom(city: City): Customer? {
