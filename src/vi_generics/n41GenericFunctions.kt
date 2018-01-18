@@ -2,9 +2,11 @@ package vi_generics
 
 import util.TODO
 import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashSet
 
 fun task41(): Nothing = TODO(
-    """
+        """
         Task41.
         Add a 'partitionTo' function that splits a collection into two collections according to a predicate.
         Uncomment the commented invocations of 'partitionTo' below and make them compile.
@@ -20,11 +22,20 @@ fun task41(): Nothing = TODO(
 )
 
 fun List<String>.partitionWordsAndLines(): Pair<List<String>, List<String>> {
-    task41()
-//    return partitionTo(ArrayList<String>(), ArrayList()) { s -> !s.contains(" ") }
+    return partitionTo(ArrayList(), ArrayList()) { s -> !s.contains(" ") }
+}
+
+fun <C : MutableCollection<T>, T> Collection<T>.partitionTo(matching: C, remaining: C, predicate: (T) -> Boolean): Pair<C, C> {
+    this.forEach {e ->
+        if (predicate(e)){
+            matching.add(e)
+        } else {
+            remaining.add(e)
+        }
+    }
+    return Pair(matching, remaining)
 }
 
 fun Set<Char>.partitionLettersAndOtherSymbols(): Pair<Set<Char>, Set<Char>> {
-    task41()
-//    return partitionTo(HashSet<Char>(), HashSet()) { c -> c in 'a'..'z' || c in 'A'..'Z'}
+    return partitionTo(HashSet(), HashSet()) { c -> c in 'a'..'z' || c in 'A'..'Z' }
 }
