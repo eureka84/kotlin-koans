@@ -1,9 +1,6 @@
 package vi_generics
 
 import util.TODO
-import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashSet
 
 fun task41(): Nothing = TODO(
         """
