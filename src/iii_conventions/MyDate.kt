@@ -28,11 +28,10 @@ class RepeatedTimeInterval(val timeInterval: TimeInterval, val times: Int)
 
 class DateRange(
         override val start: MyDate,
-        override val endInclusive: MyDate) : ClosedRange<MyDate>, Iterable<MyDate> {
+        override val endInclusive: MyDate
+) : ClosedRange<MyDate>, Iterable<MyDate> {
 
-    override fun iterator(): Iterator<MyDate> {
-
-        return object : Iterator<MyDate> {
+    override fun iterator(): Iterator<MyDate> = object : Iterator<MyDate> {
             var current: MyDate = start
 
             override fun hasNext(): Boolean = current <= endInclusive
@@ -43,5 +42,5 @@ class DateRange(
                 return next
             }
         }
-    }
+
 }
